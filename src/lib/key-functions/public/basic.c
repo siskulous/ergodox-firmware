@@ -25,8 +25,27 @@
 #define  COL           main_arg_col
 #define  IS_PRESSED    main_arg_is_pressed
 #define  WAS_PRESSED   main_arg_was_pressed
+extern uint8_t keyboard_leds;
 
 // ----------------------------------------------------------------------------
+
+
+// Function for making the LEDs show the current layer in binary. 
+void led_layer(void){
+	uint8_t curLayer = main_layers_peek(0); //Get the current layer....I think. C isn't exactly my strongest language
+	curLayer++; //I always want there to be at least 1 LED on, so I start counting at 1
+	//-----Begin optional code
+	//The binary representation is great if you have more than three layers. If you only have three layers then a 
+	//decimal representation is more appropriate This creates that. Comment it out to keep binary representation
+	//or if you have more than 3 layers.
+	if(curLayer==0x03){
+		curLayer=0x04;
+	}
+	//------End optional code
+
+	keyboard_leds=curLayer;
+}
+
 
 /*
  * [name]
@@ -109,6 +128,7 @@ static void layer_pop(uint8_t local_id) {
 		main_layers_pop_id(id);
 		layer_ids[local_id] = 0;
 	}
+	led_layer();
 }
 
 static void layer_push(uint8_t local_id) {
@@ -121,6 +141,7 @@ static void layer_push(uint8_t local_id) {
 		main_layers_pop_id(main_layers_peek(0));
 	}
 	layer_ids[local_id] = main_layers_push(keycode, eStickyNone);
+	led_layer();
 }
 
 static void layer_sticky(uint8_t local_id) {
@@ -167,6 +188,7 @@ static void layer_toggle(uint8_t local_id) {
 	}
 }
 
+
 /*
  * [name]
  *   Layer push #1
@@ -176,6 +198,7 @@ static void layer_toggle(uint8_t local_id) {
  *   the top of the stack, and record the id of that layer element
  */
 void kbfun_layer_push_1(void) {
+	//keyboard_leds = 0x02;
 	layer_push(1);
 }
 
@@ -228,6 +251,7 @@ void kbfun_layer_sticky_1  (void) {
  *   touching any other elements)
  */
 void kbfun_layer_pop_1(void) {
+	//keyboard_leds = 0x01;
 	layer_pop(1);
 }
 
@@ -251,6 +275,7 @@ void kbfun_layer_toggle_1(void) {
  *   See the description of kbfun_layer_push_1()
  */
 void kbfun_layer_push_2(void) {
+	//keyboard_leds = 0x04;
 	layer_push(2);
 }
 
@@ -273,6 +298,7 @@ void kbfun_layer_sticky_2  (void) {
  *   See the description of kbfun_layer_pop_1()
  */
 void kbfun_layer_pop_2(void) {
+	keyboard_leds = 0x01;
 	layer_pop(2);
 }
 

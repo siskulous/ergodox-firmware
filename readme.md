@@ -1,3 +1,29 @@
+I am leaving Ben Blazak's original readme intact except for this intro to detail my changes. 
+
+This firmware is a fork of the master branch of Ben Blazak's ErgoDox firmware. 99% of what you
+see here is his work (which is why I'm leaving the original readme intact). My changes are: 
+
+* The LEDs will indicate the current active layer instead of the default numlock/caps lock/scroll
+  lock functionality. By default they indicate layers 0-2 by lighting up a single light for each
+  layer, but the code is in place to make it indicate layers 0-6 in binary instead. Should you
+  desire this functionality simply comment out lines 41-43 of src/lib/key-functions/public/basic.c.
+  Also note that I prefer to always have at least one LED on so layer 0 actually displays as layer 1.
+
+* The default layout is the dvorak based layout that I use. You can change to a different layout by 
+  editing makefile-options as usual.
+
+TODO
+
+* Disable the default numlock/caps lock/scroll lock functionality. You'll notice those keys are not
+  assigned on my layout so for my use this is unnecessary, but if you do change the state of one 
+  of the locks currently it will override the indicator functionality until you change layers.
+
+* Consider moving to partial-rewrite. The partial-rewrite branch has a few nice-to-have features
+  not in the master branch.
+
+* Get those two dead keys on my ErgoDox fixed so I can assign something to them (not really a todo
+  so much as a be aware for anyone choosing to use my layout).
+
 # [Firmware][ergodox-firmware] for the [ErgoDox keyboard][]
 
 The official website is [ergodox.org] (http://www.ergodox.org).  
