@@ -322,7 +322,10 @@ static uint8_t keyboard_idle_config=125;
 static uint8_t keyboard_idle_count=0;
 
 // 1=num lock, 2=caps lock, 4=scroll lock, 8=compose, 16=kana
-volatile uint8_t keyboard_leds=0;
+// The default layer is indicated by lighting just the num lock key. 
+// Yes, this is the lazy way to do it, but since we already know the
+// initial state it's also more effecient.
+volatile uint8_t keyboard_leds=0x01;
 
 // which consumer key is currently pressed
 uint16_t consumer_key;
@@ -638,7 +641,7 @@ ISR(USB_COM_vect)
 			if (bmRequestType == 0x21) {
 				if (bRequest == HID_SET_REPORT) {
 					usb_wait_receive_out();
-					keyboard_leds = UEDATX;
+					//keyboard_leds = UEDATX;
 					usb_ack_out();
 					usb_send_in();
 					return;

@@ -13,11 +13,6 @@ see here is his work (which is why I'm leaving the original readme intact). My c
   editing makefile-options as usual.
 
 TODO
-
-* Disable the default numlock/caps lock/scroll lock functionality. You'll notice those keys are not
-  assigned on my layout so for my use this is unnecessary, but if you do change the state of one 
-  of the locks currently it will override the indicator functionality until you change layers.
-
 * Consider moving to partial-rewrite. The partial-rewrite branch has a few nice-to-have features
   not in the master branch.
 
