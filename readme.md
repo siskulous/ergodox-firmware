@@ -16,9 +16,6 @@ TODO
 * Consider moving to partial-rewrite. The partial-rewrite branch has a few nice-to-have features
   not in the master branch.
 
-* Get those two dead keys on my ErgoDox fixed so I can assign something to them (not really a todo
-  so much as a be aware for anyone choosing to use my layout).
-
 # [Firmware][ergodox-firmware] for the [ErgoDox keyboard][]
 
 The official website is [ergodox.org] (http://www.ergodox.org).  
