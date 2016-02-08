@@ -13,7 +13,6 @@
 #include "../../../lib/key-functions/public.h"
 #include "../matrix.h"
 #include "../layout.h"
-//extern uint8_t keyboard_leds;
 // FUNCTIONS ------------------------------------------------------------------
 void kbfun_layer_pop_all(void) {
   kbfun_layer_pop_1();
@@ -26,7 +25,6 @@ void kbfun_layer_pop_all(void) {
   kbfun_layer_pop_8();
   kbfun_layer_pop_9();
   kbfun_layer_pop_10();
-  //keyboard_leds=0x01;
 }
 
 // DEFINITIONS ----------------------------------------------------------------
@@ -74,8 +72,8 @@ KB_MATRIX_LAYER(
 	KEY_LeftShift,	KEY_Semicolon_Colon,	KEY_q_Q,	KEY_j_J,	KEY_k_K,	KEY_x_X,	1,	
 	KEY_LeftControl,	KEY_GraveAccent_Tilde,	KEY_Backslash_Pipe,	KEY_DeleteForward,	KEY_LeftShift,	
 	KEY_Home,	KEY_End,	
-	0,	0,	_equal,	
-	KEY_DeleteBackspace,	KEY_DeleteForward,	_equal,	
+	0,	0,	KEY_Equal_Plus,	
+	KEY_DeleteBackspace,	KEY_DeleteForward,	KEY_LeftControl,	
 	// right hand
 	2,	KEY_6_Caret,	KEY_7_Ampersand,	KEY_8_Asterisk,	KEY_9_LeftParenthesis,	KEY_0_RightParenthesis,	KEY_Slash_Question,	
 	KEY_LeftBracket_LeftBrace,	KEY_f_F,	KEY_g_G,	KEY_c_C,	KEY_r_R,	KEY_l_L,	KEY_Backslash_Pipe,	
@@ -114,20 +112,20 @@ KB_MATRIX_LAYER(
 	// unused
 	0,	
 	// left hand
-	0,	0,	0,	0,	0,	0,	0,	
-	0,	0,	0,	KEY_UpArrow,	0,	0,	0,	
+	0,	0,	0,	0,	0,	KEY_PrintScreen,	KEY_Mute,	
+	0,	0,	0,	KEY_UpArrow,	0,	0,	KEY_VolumeUp,	
 	0,	0,	KEY_LeftArrow,	KEY_DownArrow,	KEY_RightArrow,	0,	
-	0,	0,	0,	KEY_UpArrow,	0,	0,	0,	
+	0,	0,	0,	KEY_UpArrow,	0,	0,	KEY_VolumeDown,	
 	0,	0,	KEY_LeftArrow,	KEY_DownArrow,	KEY_RightArrow,	
 	0,	0,	
 	0,	0,	0,	
 	KEY_DeleteBackspace,	0,	0,	
 	// right hand
-	2,	0,	KEYPAD_NumLock_Clear,	KEYPAD_Slash,	KEYPAD_Asterisk,	KEYPAD_Minus,	0,	
-	0,	0,	KEYPAD_7_Home,	KEYPAD_8_UpArrow,	KEYPAD_9_PageUp,	KEYPAD_Plus,	0,	
+	2,	KEYPAD_MemoryStore,	0,	KEYPAD_Slash,	KEYPAD_Asterisk,	KEYPAD_Caret,	0,	
+	KEYPAD_MemoryAdd,	KEYPAD_MemoryRecall,	KEYPAD_7_Home,	KEYPAD_8_UpArrow,	KEYPAD_9_PageUp,	KEYPAD_Minus,	0,	
 	0,	KEYPAD_4_LeftArrow,	KEYPAD_5,	KEYPAD_6_RightArrow,	KEYPAD_Plus,	0,	
-	0,	0,	KEYPAD_1_End,	KEYPAD_2_DownArrow,	KEYPAD_3_PageDown,	KEY_ReturnEnter,	0,	
-	0,	0,	KEYPAD_Period_Delete,	KEY_ReturnEnter,	0,	
+	KEYPAD_MemorySubtract,	KEYPAD_Equal,	KEYPAD_1_End,	KEYPAD_2_DownArrow,	KEYPAD_3_PageDown,	KEY_ReturnEnter,	0,	
+	KEYPAD_000,	0,	KEYPAD_Period_Delete,	KEYPAD_Clear,	0,	
 	0,	0,	
 	0,	0,	0,	
 	0,	KEY_ReturnEnter,	KEYPAD_0_Insert	
@@ -349,20 +347,20 @@ KB_MATRIX_LAYER(
 	// unused
 	NULL,	
 	// left hand
-	dbtldr,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	
-	NULL,	NULL,	NULL,	kprrel,	NULL,	NULL,	NULL,	
+	dbtldr,	NULL,	NULL,	NULL,	NULL,	kprrel,	kprrel,	
+	NULL,	NULL,	NULL,	kprrel,	NULL,	NULL,	kprrel,	
 	NULL,	NULL,	kprrel,	kprrel,	kprrel,	NULL,	
-	NULL,	NULL,	NULL,	kprrel,	NULL,	NULL,	NULL,	
+	NULL,	NULL,	NULL,	kprrel,	NULL,	NULL,	kprrel,	
 	NULL,	NULL,	kprrel,	kprrel,	kprrel,	
 	lpop,	NULL,	
 	NULL,	NULL,	NULL,	
 	kprrel,	NULL,	NULL,	
 	// right hand
-	lpop2,	NULL,	kprrel,	kprrel,	kprrel,	kprrel,	NULL,	
-	NULL,	NULL,	kprrel,	kprrel,	kprrel,	kprrel,	NULL,	
+	lpop2,	kprrel,	NULL,	kprrel,	kprrel,	kprrel,	NULL,	
+	kprrel,	kprrel,	kprrel,	kprrel,	kprrel,	kprrel,	NULL,	
 	NULL,	kprrel,	kprrel,	kprrel,	kprrel,	NULL,	
-	NULL,	NULL,	kprrel,	kprrel,	kprrel,	kprrel,	NULL,	
-	NULL,	NULL,	kprrel,	kprrel,	NULL,	
+	kprrel,	kprrel,	kprrel,	kprrel,	kprrel,	kprrel,	NULL,	
+	kprrel,	NULL,	kprrel,	kprrel,	NULL,	
 	NULL,	NULL,	
 	NULL,	NULL,	NULL,	
 	NULL,	kprrel,	kprrel	
@@ -545,7 +543,7 @@ KB_MATRIX_LAYER(
 	kprrel,	kprrel,	kprrel,	kprrel,	kprrel,	
 	kprrel,	kprrel,	
 	NULL,	NULL,	kprrel,	
-	kprrel,	NULL,	NULL,	
+	kprrel,	kprrel,	kprrel,	
 	// right hand
 	NULL,	kprrel,	kprrel,	kprrel,	kprrel,	kprrel,	kprrel,	
 	kprrel,	kprrel,	kprrel,	kprrel,	kprrel,	kprrel,	kprrel,	
@@ -584,20 +582,20 @@ KB_MATRIX_LAYER(
 	// unused
 	NULL,	
 	// left hand
-	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	
-	NULL,	NULL,	NULL,	kprrel,	NULL,	NULL,	NULL,	
+	NULL,	NULL,	NULL,	NULL,	NULL,	kprrel,	kprrel,	
+	NULL,	NULL,	NULL,	kprrel,	NULL,	NULL,	kprrel,	
 	NULL,	NULL,	kprrel,	kprrel,	kprrel,	NULL,	
-	NULL,	NULL,	NULL,	kprrel,	NULL,	NULL,	NULL,	
+	NULL,	NULL,	NULL,	kprrel,	NULL,	NULL,	kprrel,	
 	NULL,	NULL,	kprrel,	kprrel,	kprrel,	
 	NULL,	NULL,	
 	NULL,	NULL,	NULL,	
 	kprrel,	NULL,	NULL,	
 	// right hand
-	NULL,	NULL,	kprrel,	kprrel,	kprrel,	kprrel,	NULL,	
-	NULL,	NULL,	kprrel,	kprrel,	kprrel,	kprrel,	NULL,	
+	NULL,	kprrel,	NULL,	kprrel,	kprrel,	kprrel,	NULL,	
+	kprrel,	kprrel,	kprrel,	kprrel,	kprrel,	kprrel,	NULL,	
 	NULL,	kprrel,	kprrel,	kprrel,	kprrel,	NULL,	
-	NULL,	NULL,	kprrel,	kprrel,	kprrel,	kprrel,	NULL,	
-	NULL,	NULL,	kprrel,	kprrel,	NULL,	
+	kprrel,	kprrel,	kprrel,	kprrel,	kprrel,	kprrel,	NULL,	
+	kprrel,	NULL,	kprrel,	kprrel,	NULL,	
 	NULL,	NULL,	
 	NULL,	NULL,	NULL,	
 	NULL,	kprrel,	kprrel	
